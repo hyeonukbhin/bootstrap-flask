@@ -3,21 +3,103 @@
 
 {% block content %}
 
-    <h2>Example Form</h2>
     <pre>
-class ExampleForm(FlaskForm):
-    date = DateField(description="We'll never share your email with anyone else.")  # add help text with `description`
-    datetime = DateTimeField(render_kw={'placeholder': 'this is placeholder'})  # add HTML attribute with `render_kw`
-    image = FileField(render_kw={'class': 'my-class'})  # add your class
-    option = RadioField(choices=[('dog', 'Dog'), ('cat', 'Cat'), ('bird', 'Bird'), ('alien', 'Alien')])
-    select = SelectField(choices=[('dog', 'Dog'), ('cat', 'Cat'), ('bird', 'Bird'), ('alien', 'Alien')])
-    selectmulti = SelectMultipleField(choices=[('dog', 'Dog'), ('cat', 'Cat'), ('bird', 'Bird'), ('alien', 'Alien')])
-    bio = TextAreaField()
-    title = StringField()
-    secret = PasswordField()
-    remember = BooleanField('Remember me')
-    submit = SubmitField()</pre>
-    {{ render_form(example_form) }}
+영상의 성격과 관련될 수 있는 질문을 드리겠습니다.
+영상속의 화자에 대하여 성격과 가장 일치 한다고 생각되는 것을 그 정도에 따라 기입해 주세요.</pre>
+<!--    {{ render_form(example_form) }}-->
+<h4>{{ example_form.option1.label }}</h4>
+{% for subfield in example_form.option1 %}
+<tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+</tr>
+{% endfor %}
+<p></p>
+<h4>{{ example_form.option2.label }}</h4>
+{% for subfield in example_form.option2 %}
+<tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+</tr>
+{% endfor %}
+<p></p>
+
+<h4>{{ example_form.option3.label }}</h4>
+{% for subfield in example_form.option3 %}
+<tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+</tr>
+{% endfor %}
+<p></p>
+
+<h4>{{ example_form.option4.label }}</h4>
+{% for subfield in example_form.option4 %}
+<tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+</tr>
+{% endfor %}
+<p></p>
+
+<h4>{{ example_form.option5.label }}</h4>
+{% for subfield in example_form.option5 %}
+<tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+</tr>
+{% endfor %}
+<p></p>
+
+<h4>{{ example_form.option6.label }}</h4>
+{% for subfield in example_form.option6 %}
+<tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+</tr>
+{% endfor %}
+<p></p>
+
+<h4>{{ example_form.option7.label }}</h4>
+{% for subfield in example_form.option7 %}
+<tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+</tr>
+{% endfor %}
+<p></p>
+
+<h4>{{ example_form.option8.label }}</h4>
+{% for subfield in example_form.option8 %}
+<tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+</tr>
+{% endfor %}
+<p></p>
+
+<h4>{{ example_form.option9.label }}</h4>
+{% for subfield in example_form.option9 %}
+<tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+</tr>
+{% endfor %}
+<p></p>
+
+<h4>{{ example_form.option10.label }}</h4>
+{% for subfield in example_form.option10 %}
+<tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+</tr>
+{% endfor %}
+<p></p>
+
+    {{ render_field(form.submit, button_style='success', button_size='block') }}
+
+
+
 
     <h2>Render a form with render_form</h2>
     <pre>{% raw %}{{ render_form(form) }}{% endraw %}</pre>
@@ -47,22 +129,19 @@ class ExampleForm(FlaskForm):
     {{ render_field(form.submit) }}
     </form>
 
-    <h2>Render a form with render_form_row</h2>
-    <pre>{% raw %}
-{{ render_form_row([form.username, form.password]) }}
-{{ render_form_row([form.username, form.password], col_map={'username': 'col-md-6', 'password': 'col-md-4'}) }}
-{{ render_form_row([form.username, form.password], col_map={'username': 'col-md-2', 'password': 'col-md-8'}) }}
-{{ render_form_row([form.username, form.password], col_class_default='col-md-2') }}
-{{ render_form_row([form.remember]) }}
-{{ render_form_row([form.submit]) }}
-{% endraw %}</pre>
+    <h2>실험 소개</h2>
+    <pre>실험 내용</pre>
         
     <form method="post">
     {{ form.csrf_token }}
-    {{ render_form_row([form.username, form.password]) }}
-    {{ render_form_row([form.username, form.password], col_map={'username': 'col-md-6', 'password': 'col-md-4'}) }}
-    {{ render_form_row([form.username, form.password], col_map={'username': 'col-md-2', 'password': 'col-md-8'}) }}
-    {{ render_form_row([form.username, form.password], col_class_default='col-md-2') }}
+    {{ render_form_row([form.account, form.password]) }}
+    {{ render_form_row([form.email]) }}
+    {{ render_form_row([form.name]) }}
+    {{ render_form_row([form.age, form.sex]) }}
+
+
+<!--    {{ render_form_row([form.username, form.password], col_map={'username': 'col-md-2', 'password': 'col-md-8'}) }}-->
+<!--    {{ render_form_row([form.username, form.password], col_class_default='col-md-2') }}-->
     {{ render_form_row([form.remember]) }}
     {{ render_form_row([form.submit]) }}
     </form>

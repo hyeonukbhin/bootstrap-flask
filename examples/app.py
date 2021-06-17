@@ -34,23 +34,45 @@ csrf = CSRFProtect(app)
 
 class ExampleForm(FlaskForm):
     """An example form that contains all the supported bootstrap style form fields."""
-    date = DateField(description="We'll never share your email with anyone else.")  # add help text with `description`
-    datetime = DateTimeField(render_kw={'placeholder': 'this is placeholder'})  # add HTML attribute with `render_kw`
-    image = FileField(render_kw={'class': 'my-class'})  # add your class
-    option = RadioField(choices=[('dog', 'Dog'), ('cat', 'Cat'), ('bird', 'Bird'), ('alien', 'Alien')])
-    select = SelectField(choices=[('dog', 'Dog'), ('cat', 'Cat'), ('bird', 'Bird'), ('alien', 'Alien')])
-    selectmulti = SelectMultipleField(choices=[('dog', 'Dog'), ('cat', 'Cat'), ('bird', 'Bird'), ('alien', 'Alien')])
-    bio = TextAreaField()
-    title = StringField()
-    secret = PasswordField()
-    remember = BooleanField('Remember me')
+    # date = DateField(description="We'll never share your email with anyone else.123123")  # add help text with `description`
+    # datetime = DateTimeField(render_kw={'placeholder': 'this is placeholder'})  # add HTML attribute with `render_kw`
+    # image = FileField(render_kw={'class': 'my-class'})  # add your class
+    option1 = RadioField('보수적이다.', choices=[('dog', '전혀 그렇지 않다.'), ('cat', '그렇지 않다.'), ('bird', '보통이다.'), ('alien', '그렇다.'), ('alien', '매우 그렇다.')])
+    option2 = RadioField('믿음직스럽다.',choices=[('dog', '전혀 그렇지 않다.'), ('cat', '그렇지 않다.'), ('bird', '보통이다.'), ('alien', '그렇다.'), ('alien', '매우 그렇다.')])
+    option3 = RadioField('게으른 편이다.',choices=[('dog', '전혀 그렇지 않다.'), ('cat', '그렇지 않다.'), ('bird', '보통이다.'), ('alien', '그렇다.'), ('alien', '매우 그렇다.')])
+    option4 = RadioField('느긋한 편이고, 스트레스를 잘 해소한다.',choices=[('dog', '전혀 그렇지 않다.'), ('cat', '그렇지 않다.'), ('bird', '보통이다.'), ('alien', '그렇다.'), ('alien', '매우 그렇다.')])
+    option5 = RadioField('예술에 대한 관심이 별로 없다.',choices=[('dog', '전혀 그렇지 않다.'), ('cat', '그렇지 않다.'), ('bird', '보통이다.'), ('alien', '그렇다.'), ('alien', '매우 그렇다.')])
+    option6 = RadioField('어울리기를 좋아하고 사교적이다.',choices=[('dog', '전혀 그렇지 않다.'), ('cat', '그렇지 않다.'), ('bird', '보통이다.'), ('alien', '그렇다.'), ('alien', '매우 그렇다.')])
+    option7 = RadioField('다른 사람의 흠을 잘 잡는다.',choices=[('dog', '전혀 그렇지 않다.'), ('cat', '그렇지 않다.'), ('bird', '보통이다.'), ('alien', '그렇다.'), ('alien', '매우 그렇다.')])
+    option8 = RadioField('맡은 일을 철저히 한다.',choices=[('dog', '전혀 그렇지 않다.'), ('cat', '그렇지 않다.'), ('bird', '보통이다.'), ('alien', '그렇다.'), ('alien', '매우 그렇다.')])
+    option9 = RadioField('쉽게 신경질을 낸다.',choices=[('dog', '전혀 그렇지 않다.'), ('cat', '그렇지 않다.'), ('bird', '보통이다.'), ('alien', '그렇다.'), ('alien', '매우 그렇다.')])
+    option10 = RadioField('상상력이 풍부하다.',choices=[('dog', '전혀 그렇지 않다.'), ('cat', '그렇지 않다.'), ('bird', '보통이다.'), ('alien', '그렇다.'), ('alien', '매우 그렇다.')])
+    # options = {"option1": option1,
+    #            "option2": option2
+    #            }
+    # options = Field(option1,option2)
+    # select = SelectField(choices=[('dog', 'Dog'), ('cat', 'Cat'), ('bird', 'Bird'), ('alien', 'Alien')])
+    # selectmulti = SelectMultipleField(choices=[('dog', 'Dog'), ('cat', 'Cat'), ('bird', 'Bird'), ('alien', 'Alien')])
+    # bio = TextAreaField()
+    # title = StringField()
+    # secret = PasswordField()
+    # remember = BooleanField('Remember me')
     submit = SubmitField()
 
 
 class HelloForm(FlaskForm):
+    account = StringField('Account', validators=[DataRequired(), Length(1, 20)])
+    email = StringField('E-mail', validators=[DataRequired(), Length(1, 20)])
+    name = StringField('이름', validators=[DataRequired(), Length(1, 20)])
+    age = StringField('나이', validators=[DataRequired(), Length(1, 20)])
+    sex = SelectField(choices=[('dog', '여자'), ('cat', '남자')])
+
+
     username = StringField('Username', validators=[DataRequired(), Length(1, 20)])
     password = PasswordField('Password', validators=[DataRequired(), Length(8, 150)])
-    remember = BooleanField('Remember me')
+    remember = DateField('Phone Number', description='본 실험에서 기입된 개인정보를 노출하지 않으며 연구외 목적으로 사용하지 않습니다.')
+    # date = DateField(description="We'll never share your email with anyone else.123123")  # add help text with `description`
+
     submit = SubmitField()
 
 
@@ -115,6 +137,7 @@ def index():
 @app.route('/form', methods=['GET', 'POST'])
 def test_form():
     form = HelloForm()
+    # return render_template('form.html', form=form, example_form=ExampleForm())
     return render_template('form.html', form=form, telephone_form=TelephoneForm(), contact_form=ContactForm(), im_form=IMForm(), button_form=ButtonForm(), example_form=ExampleForm())
 
 
